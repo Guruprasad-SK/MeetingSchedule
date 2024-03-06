@@ -1,0 +1,10 @@
+﻿@model MeetingDemoSchedularApp.ViewModels.MeetingViewModel
+
+<h2>View Meetings</h2>
+
+<!-- Display existing meetings -->
+@foreach (var meeting in Model.Meetings)
+{
+    <p>@meeting.Title</p>
+    <!-- Display other meeting details -->
+}

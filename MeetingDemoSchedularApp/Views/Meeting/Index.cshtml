@@ -1,0 +1,41 @@
+﻿@model MeetingDemoSchedularApp.ViewModels.MeetingViewModel
+
+<h2>Meeting Index</h2>
+
+<!-- Display existing meetings -->
+@foreach (var meeting in Model.Meetings)
+{
+    <p>@meeting.Title</p>
+    <!-- Display other meeting details -->
+}
+
+<!-- Schedule new meeting form -->
+<form asp-action="ScheduleMeeting" method="post">
+    <!-- Display form fields for the new meeting -->
+    <label for="NewMeeting_Title">Title:</label>
+    <input type="text" asp-for="NewMeeting.Title" />
+    <span asp-validation-for="NewMeeting.Title"></span>
+
+    <!-- Other form fields for the new meeting -->
+    <label for="NewMeeting_Emails">Emails (comma-separated):</label>
+    <input type="text" asp-for="NewMeeting.Emails" />
+    <span asp-validation-for="NewMeeting.Emails"></span>
+
+    <label for="NewMeeting_Date">Date:</label>
+    <input type="date" asp-for="NewMeeting.Date" />
+    <span asp-validation-for="NewMeeting.Date"></span>
+  
+
+
+
+
+    <label for="NewMeeting_Location">Location:</label>
+    <input type="text" asp-for="NewMeeting.Location" />
+    <span asp-validation-for="NewMeeting.Location"></span>
+
+    <label for="NewMeeting_Agenda">Agenda:</label>
+    <textarea asp-for="NewMeeting.Agenda"></textarea>
+    <span asp-validation-for="NewMeeting.Agenda"></span>
+
+    <button type="submit">Schedule Meeting</button>
+</form>

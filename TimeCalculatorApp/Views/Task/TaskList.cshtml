@@ -1,0 +1,43 @@
+﻿@model List<TaskModel>
+
+@{
+    ViewBag.Title = "Task List";
+}
+
+<h2>Task List</h2>
+
+<table class="table">
+    <tr>
+        <th>Task ID</th>
+        <th>Task Name</th>
+        <th>Assigned Time</th>
+        <th>Employee Name</th>
+        <th>Project Description</th>
+        <th>Completion Time</th>
+        <th>Duration (hours)</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.TaskId</td>
+            <td>@task.TaskName</td>
+            <td>@task.AssignedTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            <td>@task.EmployeeName</td>
+            <td>@task.ProjectDescription</td>
+            <td>@(task.CompletionTime.HasValue ? task.CompletionTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : "")</td>
+            <td>@task.Duration</td>
+            <td>
+                @if (!task.CompletionTime.HasValue)
+                {
+                    <a href="@Url.Action("CompleteTask", new { taskId = task.TaskId })">Complete Task</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Assign Task", "AssignTask", "Task", null, new { @class = "btn btn-default" })
+</div>
